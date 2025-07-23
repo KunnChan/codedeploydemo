@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         AWS_REGION = "ap-southeast-1"
-        CODEARTIFACT_DOMAIN = "my-domain"
-        CODEARTIFACT_REPO = "my-repo"
-        CODEARTIFACT_URL = "https://${CODEARTIFACT_DOMAIN}-111122223333.d.codeartifact.${AWS_REGION}.amazonaws.com/maven/${CODEARTIFACT_REPO}/"
-        S3_BUCKET = "your-deployment-bucket"
+        CODEARTIFACT_DOMAIN = "mydomain"
+        CODEARTIFACT_REPO = "myrepository"
+        CODEARTIFACT_URL = "https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/"
+        S3_BUCKET = "SpringAppBundle122121212121"
         APPLICATION_NAME = "springboot-app"
         DEPLOYMENT_GROUP = "springboot-group"
     }
@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your/repo.git'
+                git 'https://github.com/KunnChan/codedeploydemo.git'
             }
         }
 

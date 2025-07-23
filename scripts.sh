@@ -1,5 +1,5 @@
 #1. Create CodeArtifact Domain
-aws codeartifact create-domain --domain my-domain
+aws codeartifact create-domain --domain mydomain
 
 #2. Create Repository
 aws codeartifact create-repository \
@@ -12,6 +12,8 @@ export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token \
   --domain mydomain \
   --query authorizationToken \
   --output text)
+
+# export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain mydomain --domain-owner 408803358823 --region ap-southeast-1 --query authorizationToken --output text`
 
 #4. Configure Maven Settings (on Jenkins EC2)
 # ~/.m2/settings.xml
