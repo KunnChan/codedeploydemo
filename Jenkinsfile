@@ -6,7 +6,7 @@ pipeline {
         CODEARTIFACT_DOMAIN = "mydomain"
         CODEARTIFACT_REPO = "myrepository"
         CODEARTIFACT_URL = "https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/"
-        S3_BUCKET = "SpringAppBundle122121212121"
+        S3_BUCKET = "springappbundle122121212121"
         APPLICATION_NAME = "springbootapp"
         DEPLOYMENT_GROUP = "springboot-dg-bluegreen"
         DEPLOYMENT_ZIP = "deployment.zip"
