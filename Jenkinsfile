@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/KunnChan/codedeploydemo.git'
+                checkout scm
             }
         }
 
