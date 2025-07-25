@@ -28,7 +28,7 @@ pipeline {
 
         stage('Push to CodeArtifact') {
             steps {
-                sh """
+                sh '''
                     export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token \
                     --domain mydomain \
                     --region ap-southeast-1 \
@@ -36,7 +36,7 @@ pipeline {
                     --output text)
 
                     mvn deploy -DaltDeploymentRepository=codeartifact::default::${CODEARTIFACT_URL}
-                """
+                '''
             }
         }
 
