@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_NAME=CodeDeployDemo-0.0.1-SNAPSHOT.jar
+APP_NAME=app.jar
 APP_DIR=/home/ec2-user/app
 LOG_FILE=$APP_DIR/app.log
 

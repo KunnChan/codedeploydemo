@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: target/CodeDeployDemo-0.0.1-SNAPSHOT.jar
+  - source: target/app.jar
     destination: /home/ec2-user/app
 
 hooks:

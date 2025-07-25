@@ -7,8 +7,9 @@ pipeline {
         CODEARTIFACT_REPO = "myrepository"
         CODEARTIFACT_URL = "https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/"
         S3_BUCKET = "SpringAppBundle122121212121"
-        APPLICATION_NAME = "springboot-app"
-        DEPLOYMENT_GROUP = "springboot-group"
+        APPLICATION_NAME = "springbootapp"
+        DEPLOYMENT_GROUP = "springboot-dg-bluegreen"
+        DEPLOYMENT_ZIP = "deployment.zip"
     }
 
     stages {
@@ -40,23 +41,36 @@ pipeline {
             }
         }
 
-        stage('Upload to S3 for CodeDeploy') {
+        stage('Prepare Deployment Bundle') {
             steps {
                 sh """
-                  zip -r deployment.zip appspec.yml scripts/ target/app.jar
-                  aws s3 cp deployment.zip s3://$S3_BUCKET/
+                    mkdir -p target/deploy
+                    cp target/*.jar target/deploy/app.jar
+                    cp appspec.yml target/deploy/
+                    mkdir -p target/deploy/scripts
+                    cp scripts/start.sh target/deploy/scripts/
+                    chmod +x target/deploy/scripts/start.sh
+                    cd target/deploy && zip -r ../../${DEPLOYMENT_ZIP} *
                 """
             }
         }
 
-        stage('Deploy with CodeDeploy') {
+        stage('Upload to S3') {
             steps {
                 sh """
-                  aws deploy create-deployment \
-                    --application-name $APPLICATION_NAME \
-                    --deployment-group-name $DEPLOYMENT_GROUP \
-                    --s3-location bucket=$S3_BUCKET,key=deployment.zip,bundleType=zip \
-                    --region $AWS_REGION
+                    aws s3 cp ${DEPLOYMENT_ZIP} s3://${S3_BUCKET}/${DEPLOYMENT_ZIP} --region ${AWS_REGION}
+                """
+            }
+        }
+
+        stage('Trigger CodeDeploy') {
+            steps {
+                sh """
+                    aws deploy create-deployment \
+                        --application-name ${APPLICATION_NAME} \
+                        --deployment-group-name ${DEPLOYMENT_GROUP} \
+                        --s3-location bucket=${S3_BUCKET},key=${DEPLOYMENT_ZIP},bundleType=zip \
+                        --region ${AWS_REGION}
                 """
             }
         }
