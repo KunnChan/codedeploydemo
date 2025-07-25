@@ -29,7 +29,7 @@ pipeline {
         stage('Push to CodeArtifact') {
             steps {
                 sh '''
-                    mvn deploy -DaltDeploymentRepository=codeartifact::default::${CODEARTIFACT_URL}
+                    ./mvnw deploy -DaltDeploymentRepository=codeartifact::default::${CODEARTIFACT_URL}
                 '''
             }
         }
