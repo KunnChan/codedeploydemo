@@ -10,6 +10,7 @@ pipeline {
         APPLICATION_NAME = "springbootapp"
         DEPLOYMENT_GROUP = "springboot-dg-bluegreen"
         DEPLOYMENT_ZIP = "deployment.zip"
+        CODEARTIFACT_AUTH_TOKEN = credentials('aws-codeartifact-token') 
     }
 
     stages {
@@ -27,17 +28,15 @@ pipeline {
 
         stage('Push to CodeArtifact') {
             steps {
-                withCredentials([string(credentialsId: 'aws-codeartifact-token', variable: 'CODEARTIFACT_AUTH_TOKEN')]) {
-                    sh """
-                        aws codeartifact login \
-                          --tool maven \
-                          --domain $CODEARTIFACT_DOMAIN \
-                          --repository $CODEARTIFACT_REPO \
-                          --region $AWS_REGION
+                sh """
+                    export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token \
+                    --domain mydomain \
+                    --region ap-southeast-1 \
+                    --query authorizationToken \
+                    --output text)
 
-                        mvn deploy -DaltDeploymentRepository=codeartifact::default::${CODEARTIFACT_URL}
-                    """
-                }
+                    mvn deploy -DaltDeploymentRepository=codeartifact::default::${CODEARTIFACT_URL}
+                """
             }
         }
 
