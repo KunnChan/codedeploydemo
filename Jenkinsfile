@@ -36,7 +36,7 @@ pipeline {
                     --query authorizationToken \
                     --output text)
 
-                    ./mvnw deploy -DaltDeploymentRepository=codeartifact::https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/
+                    ./mvnw deploy -DaltDeploymentRepository=mydomain-myrepository::https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/
                 '''
     }
             
