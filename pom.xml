@@ -50,30 +50,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
-
-	<distributionManagement>
-	<repository>
-		<id>mydomain-myrepository</id>
-		<name>mydomain-myrepository</name>
-		<url>https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/</url>
-	</repository>
-	</distributionManagement>
-
-	<profiles>
-	<profile>
-		<id>mydomain-myrepository</id>
-		<activation>
-		<activeByDefault>true</activeByDefault>
-		</activation>
-		<repositories>
-		<repository>
-			<id>mydomain-myrepository</id>
-			<url>https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/</url>
-		</repository>
-		</repositories>
-	</profile>
-	</profiles>
-
 </project>
