@@ -51,4 +51,12 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+	<repository>
+		<id>codeartifact</id>
+		<url>https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/</url>
+	</repository>
+	</distributionManagement>
+
+
 </project>
