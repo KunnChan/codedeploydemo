@@ -29,9 +29,16 @@ pipeline {
         stage('Push to CodeArtifact') {
             steps {
                 sh '''
+                    export CODEARTIFACT_AUTH_TOKEN=$(aws codeartifact get-authorization-token \
+                    --domain mydomain \
+                    --region ap-southeast-1 \
+                    --query authorizationToken \
+                    --output text)
+
                     ./mvnw deploy -DaltDeploymentRepository=codeartifact::default::${CODEARTIFACT_URL}
                 '''
             }
+            
         }
 
         stage('Prepare Deployment Bundle') {
