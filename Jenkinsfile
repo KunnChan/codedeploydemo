@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven3' // To install maven integration plugin
-    }
     environment {
         AWS_REGION = "ap-southeast-1"
         CODEARTIFACT_DOMAIN = "mydomain"
@@ -13,6 +10,7 @@ pipeline {
         APPLICATION_NAME = "springbootapp"
         DEPLOYMENT_GROUP = "springboot-dg-bluegreen"
         DEPLOYMENT_ZIP = "deployment.zip"
+        PATH = "/opt/maven/bin:${env.PATH}"
     }
 
     stages {
