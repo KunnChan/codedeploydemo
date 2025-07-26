@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3' // To install maven integration plugin
+    }
     environment {
         AWS_REGION = "ap-southeast-1"
         CODEARTIFACT_DOMAIN = "mydomain"
