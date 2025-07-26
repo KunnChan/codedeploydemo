@@ -10,7 +10,6 @@ pipeline {
         APPLICATION_NAME = "springbootapp"
         DEPLOYMENT_GROUP = "springboot-dg-bluegreen"
         DEPLOYMENT_ZIP = "deployment.zip"
-        CODEARTIFACT_AUTH_TOKEN = credentials('aws-codeartifact-token') 
     }
 
     stages {
