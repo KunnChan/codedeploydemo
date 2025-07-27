@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: target/app.jar
+  - source: app.jar
     destination: /home/ec2-user/app
 
 hooks:
