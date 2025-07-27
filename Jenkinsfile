@@ -38,11 +38,7 @@ pipeline {
 
                     export CODEARTIFACT_AUTH_TOKEN
 
-
-                    echo 'Auth token is generated.'
-                    echo $CODEARTIFACT_AUTH_TOKEN | wc -c
-
-                    mvn deploy -X -DaltDeploymentRepository=mydomain-myrepository::https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/
+                    mvn --settings ~/.m2/settings.xml deploy -DaltDeploymentRepository=mydomain-myrepository::https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/
                 '''
             }
         }
