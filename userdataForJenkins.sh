@@ -81,15 +81,10 @@ wget https://aws-codedeploy-ap-southeast-1.s3.amazonaws.com/latest/install
 
 # Make it executable
 chmod +x ./install
-
-# Run the installer
 sudo ./install auto
-
-# Start the agent
 sudo systemctl start codedeploy-agent
 
 # Enable agent to start at boot
 sudo systemctl enable codedeploy-agent
-
-# Check status
 sudo systemctl status codedeploy-agent
+

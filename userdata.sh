@@ -6,6 +6,16 @@ yum update -y
 # Install Java (Amazon Corretto 21)
 yum install -y java-21-amazon-corretto
 
+# Set JAVA_HOME and update PATH system-wide
+cat <<EOF > /etc/profile.d/java.sh
+export JAVA_HOME=/usr/lib/jvm/java-21-amazon-corretto
+export PATH=\$JAVA_HOME/bin:\$PATH
+EOF
+
+chmod +x /etc/profile.d/java.sh
+source /etc/profile.d/java.sh
+
+
 # Install CodeDeploy agent
 yum install ruby wget -y
 cd /home/ec2-user
