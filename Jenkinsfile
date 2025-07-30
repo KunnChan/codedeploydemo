@@ -7,8 +7,8 @@ pipeline {
         CODEARTIFACT_REPO = "myrepository"
         CODEARTIFACT_URL = "https://mydomain-408803358823.d.codeartifact.ap-southeast-1.amazonaws.com/maven/myrepository/"
         S3_BUCKET = "springappbundle122121212121"
-        APPLICATION_NAME = "TestBG"
-        DEPLOYMENT_GROUP = "TestAppBG"
+        APPLICATION_NAME = "MyFriendApp"
+        DEPLOYMENT_GROUP = "MyFriendAppGroup"
         DEPLOYMENT_ZIP = "deployment.zip"
         PATH = "/opt/maven/bin:${env.PATH}"
     }
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package -U -DskipTests'
             }
         }
 
